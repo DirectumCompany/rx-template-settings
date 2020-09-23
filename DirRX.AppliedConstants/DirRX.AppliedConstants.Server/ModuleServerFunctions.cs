@@ -17,7 +17,15 @@ namespace DirRX.AppliedConstants.Server
     [Public, Remote]
     public void CreateConstant(string name, bool isSystem, string value)
     {
-      CreateConstant(name, isSystem, value, null, null, null);
+      var newConstant = ConstantsSettings.Create();
+      newConstant.Name = name;
+      newConstant.IsSystem = isSystem;
+      if (value != null)
+      {
+        newConstant.StringValue = value;
+        newConstant.Type = AppliedConstants.ConstantsSetting.Type.StringType;
+      }
+      newConstant.Save();
     }
     
     /// <summary>
@@ -29,7 +37,15 @@ namespace DirRX.AppliedConstants.Server
     [Public, Remote]
     public virtual void CreateConstant(string name, bool isSystem, Double value)
     {
-      CreateConstant(name, isSystem, null, value, null, null);
+      var newConstant = ConstantsSettings.Create();
+      newConstant.Name = name;
+      newConstant.IsSystem = isSystem;
+      if (value != null)
+      {
+        newConstant.NumberValue = value;
+        newConstant.Type = AppliedConstants.ConstantsSetting.Type.NumberType;
+      }
+      newConstant.Save();
     }
     
     /// <summary>
@@ -41,7 +57,15 @@ namespace DirRX.AppliedConstants.Server
     [Public, Remote]
     public virtual void CreateConstant(string name, bool isSystem, DateTime value)
     {
-      CreateConstant(name, isSystem, null, null, value, null);
+      var newConstant = ConstantsSettings.Create();
+      newConstant.Name = name;
+      newConstant.IsSystem = isSystem;
+      if (value != null)
+      {
+        newConstant.DateTimeValue = value;
+        newConstant.Type = AppliedConstants.ConstantsSetting.Type.DateTimeType;
+      }
+      newConstant.Save();
     }
     
     /// <summary>
@@ -54,94 +78,44 @@ namespace DirRX.AppliedConstants.Server
     [Public, Remote]
     public virtual void CreateConstant(string name, bool isSystem, string value, bool isPassword)
     {
-      CreateConstant(name, isSystem, null, null, null, value);
-    }
-    
-    /// <summary>
-    /// Создать прикладную константу.
-    /// </summary>
-    /// <param name="name">Имя коснтанты.</param>
-    /// <param name="isSystem">Системная.</param>
-    /// <param name="stringValue">Строковое значение.</param>
-    /// <param name="number">Числовое значение.</param>
-    /// <param name="date">Дата.</param>
-    /// <param name="password">Является паролем.</param>
-    public virtual void CreateConstant (string name, bool isSystem, string stringValue, Double? number, DateTime? date, string password)
-    {
       var newConstant = ConstantsSettings.Create();
       newConstant.Name = name;
       newConstant.IsSystem = isSystem;
-      if (stringValue != null)
+      if (value != null)
       {
-        newConstant.StringValue = stringValue;
-        newConstant.Type = AppliedConstants.ConstantsSetting.Type.StringType;
-      }
-      
-      if (number != null)
-      {
-        newConstant.NumberValue = number;
-        newConstant.Type = AppliedConstants.ConstantsSetting.Type.NumberType;
-      }
-      
-      if (date != null)
-      {
-        newConstant.DateTimeValue = date;
-        newConstant.Type = AppliedConstants.ConstantsSetting.Type.DateTimeType;
-      }
-      
-      if (password != null)
-      {
-        newConstant.PasswordValue = password;
+        newConstant.PasswordValue = value;
         newConstant.Type = AppliedConstants.ConstantsSetting.Type.PasswordType;
       }
-      
       newConstant.Save();
     }
     
-    /// <summary>
-    /// Получить значение константы.
-    /// </summary>
-    /// <param name="name">Имя константы.</param>
-    /// <returns>Валидное строковое значение.</returns>
-    [Public, Remote]
-    public virtual string GetValue(string name)
-    {
-      var stringValue = ConstantsSettings.GetAll().FirstOrDefault(p => p.Name == name).Value;
-      return stringValue;
-    }
     
     /// <summary>
     /// Получить значение константы.
     /// </summary>
     /// <param name="name">Имя константы.</param>
-    /// <returns>Целочисленное значение константы.</returns>
-    [Public, Remote]
-    public virtual int GetIntValue(string name)
+    /// <returns>Значение константы.</returns>
+    [Public]
+    public virtual dynamic GetValue(string name)
     {
-      var doubleValue = ConstantsSettings.GetAll().FirstOrDefault(p => p.Name == name).NumberValue;
-      return Convert.ToInt32(doubleValue);
-    }
-    
-    /// <summary>
-    /// Получить значение константы.
-    /// </summary>
-    /// <param name="name">Имя константы.</param>
-    /// <returns>Вещественное значение константы.</returns>
-    [Public, Remote]
-    public virtual double GetDoubleValue(string name)
-    {
-      return ConstantsSettings.GetAll().FirstOrDefault(p => p.Name == name).NumberValue.Value;
-    }
-    
-    /// <summary>
-    /// Получить значение константы.
-    /// </summary>
-    /// <param name="name">Имя константы.</param>
-    /// <returns>Значение даты.</returns>
-    [Public, Remote]
-    public virtual DateTime GetDateTimeValue(string name)
-    {
-      return ConstantsSettings.GetAll().FirstOrDefault(p => p.Name == name).DateTimeValue.Value;
+      var constant = ConstantsSettings.GetAll().FirstOrDefault(p => p.Name == name);
+      if (constant != null)
+      {
+        if (constant.Type == AppliedConstants.ConstantsSetting.Type.StringType)
+          return constant.StringValue;
+        
+        if (constant.Type == AppliedConstants.ConstantsSetting.Type.NumberType)
+          return constant.NumberValue;
+        
+        if (constant.Type == AppliedConstants.ConstantsSetting.Type.DateTimeType)
+          return constant.DateTimeValue.Value;
+        
+        if (constant.Type == AppliedConstants.ConstantsSetting.Type.PasswordType)
+          return constant.PasswordValue;
+        return constant.Value;
+      }
+      
+      return null;
     }
   }
 }

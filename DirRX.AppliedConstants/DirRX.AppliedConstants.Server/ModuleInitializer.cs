@@ -14,6 +14,7 @@ namespace DirRX.AppliedConstants.Server
     {
       CreateRoles();
       GrantRightsOnDatabooks();
+      CreateConstants();
     }
     
     /// <summary>
@@ -48,7 +49,7 @@ namespace DirRX.AppliedConstants.Server
     
     public virtual void CreateConstants()
     {
-      Functions.Module.CreateConstant("TestConstant", false, "543");
+      Functions.Module.CreateConstant("TestConstant", false, 6432);
     }
   }
 }

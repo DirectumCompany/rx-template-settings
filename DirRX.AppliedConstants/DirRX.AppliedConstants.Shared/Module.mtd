@@ -11,13 +11,27 @@
   "CompanyCode": "DirRX",
   "Cover": {
     "NameGuid": "c8c4b4ee-db93-4c3d-953c-5a0c3c7a2600",
-    "Actions": [],
+    "Actions": [
+      {
+        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "NameGuid": "3867ac04-bb54-47f4-96c4-19dc7874648d",
+        "Name": "AppliedConstants",
+        "EntityTypeId": "14535c4a-ad17-40c1-8473-700367a9dc4f",
+        "GroupId": "a4671e16-a0d0-4afe-bbd1-efdd556226cc"
+      }
+    ],
     "Background": null,
     "Footer": {
       "NameGuid": "6e06d931-3dfb-4335-a582-840f26a0c2f2",
       "BackgroundPosition": "Stretch"
     },
-    "Groups": [],
+    "Groups": [
+      {
+        "NameGuid": "a4671e16-a0d0-4afe-bbd1-efdd556226cc",
+        "Name": "SystemSettings",
+        "BackgroundPosition": "Stretch"
+      }
+    ],
     "Header": {
       "NameGuid": "5f087f69-6186-49d7-8d87-b9d8bbe920f5",
       "BackgroundPosition": "Stretch"
@@ -43,7 +57,6 @@
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "InterfaceNamespace": "DirRX.AppliedConstants",
-  "IsVisible": false,
   "Overridden": [
     "IsVisible"
   ],
@@ -150,50 +163,7 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "GetDateTimeValue",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "name",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::System.DateTime",
-      "ReturnTypeFullName": "System.DateTime"
-    },
-    {
-      "Name": "GetDoubleValue",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "name",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::System.Double",
-      "ReturnTypeFullName": "System.Double"
-    },
-    {
-      "Name": "GetIntValue",
-      "IsRemote": true,
-      "Parameters": [
-        {
-          "Name": "name",
-          "ParameterType": "global::System.String",
-          "ParameterTypeFullName": "System.String"
-        }
-      ],
-      "Placement": "Shared",
-      "ReturnType": "global::System.Int32",
-      "ReturnTypeFullName": "System.Int32"
-    },
-    {
       "Name": "GetValue",
-      "IsRemote": true,
       "Parameters": [
         {
           "Name": "name",
@@ -201,9 +171,7 @@
           "ParameterTypeFullName": "System.String"
         }
       ],
-      "Placement": "Shared",
-      "ReturnType": "global::System.String",
-      "ReturnTypeFullName": "System.String"
+      "ReturnType": "dynamic"
     }
   ],
   "PublicStructures": [],
