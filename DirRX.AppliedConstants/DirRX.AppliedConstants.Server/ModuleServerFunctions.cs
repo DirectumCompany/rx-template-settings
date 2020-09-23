@@ -15,7 +15,7 @@ namespace DirRX.AppliedConstants.Server
     /// <param name="isSystem">Системная.</param>
     /// <param name="value">Строковое значение.</param>
     [Public, Remote]
-    public void CreateConstant(string name, bool isSystem, string value)
+    public virtual void CreateConstant(string name, bool isSystem, string value)
     {
       var newConstant = ConstantsSettings.Create();
       newConstant.Name = name;
