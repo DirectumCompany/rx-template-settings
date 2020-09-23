@@ -49,7 +49,7 @@ namespace DirRX.AppliedConstants.Server
     
     public virtual void CreateConstants()
     {
-      Functions.Module.CreateConstant("TestConstant", false, 6432);
+
     }
   }
 }
