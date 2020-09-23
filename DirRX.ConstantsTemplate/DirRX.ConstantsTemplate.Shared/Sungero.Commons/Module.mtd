@@ -1,0 +1,53 @@
+{
+  "$type": "Sungero.Metadata.LayerModuleMetadata, Sungero.Metadata",
+  "NameGuid": "25bc7928-5134-4b63-a315-2b2e313dacaf",
+  "Name": "Commons",
+  "AssociatedGuid": "7352abdb-1df1-4995-8fb4-0850a83cde9a",
+  "AsyncHandlers": [],
+  "BaseGuid": "459fa497-ee5b-49a4-9980-de00cada9b7a",
+  "ClientBaseAssemblyName": "DirRX.ConstantsTemplate.ClientBase",
+  "ClientBaseNamespace": "DirRX.ConstantsTemplate.Module.Commons.ClientBase",
+  "Code": "Commons",
+  "CompanyCode": "Sungero",
+  "Cover": {
+    "NameGuid": "d4c0d93c-8e47-4d87-8887-93ea823aa01f",
+    "Actions": [
+      {
+        "$type": "Sungero.Metadata.CoverEntityListActionMetadata, Sungero.Metadata",
+        "NameGuid": "de85f552-db87-498b-8023-3cadf0e6ceae",
+        "Name": "ShowConstants",
+        "EntityTypeId": "14535c4a-ad17-40c1-8473-700367a9dc4f",
+        "GroupId": "056413d6-d13e-41cf-a4e3-1b05196c4d4f",
+        "PreviousItemGuid": "532a3286-089e-4996-8b7e-029fc1a5ef88"
+      }
+    ],
+    "Groups": [],
+    "IsAncestorMetadata": true,
+    "Overridden": [
+      "Actions"
+    ],
+    "Versions": []
+  },
+  "ExplorerTreeOrder": [],
+  "IconResourcesKeys": [],
+  "Importance": "Low",
+  "LayeredFromGuid": "459fa497-ee5b-49a4-9980-de00cada9b7a",
+  "NeedResetAppliedCache": true,
+  "PublicStructures": [],
+  "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
+  "ResourceInterfaceNamespace": "DirRX.ConstantsTemplate.Module.Commons",
+  "ResourcesKeys": [],
+  "SpecialFolders": [],
+  "Version": "3.4.21.1",
+  "Widgets": [],
+  "Versions": [
+    {
+      "Type": "LayerModuleMetadata",
+      "Number": 6
+    },
+    {
+      "Type": "ModuleMetadata",
+      "Number": 6
+    }
+  ]
+}

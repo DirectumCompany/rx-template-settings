@@ -120,10 +120,4 @@
   <data name="DisplayName" xml:space="preserve">
     <value>Прикладные константы</value>
   </data>
-  <data name="CoverGroup_SystemSettings" xml:space="preserve">
-    <value>Настройки системы</value>
-  </data>
-  <data name="CoverAction_AppliedConstants" xml:space="preserve">
-    <value>Прикладные константы</value>
-  </data>
 </root>
