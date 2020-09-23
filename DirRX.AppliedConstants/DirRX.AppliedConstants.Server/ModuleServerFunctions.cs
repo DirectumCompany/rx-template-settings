@@ -17,6 +17,9 @@ namespace DirRX.AppliedConstants.Server
     [Public, Remote]
     public virtual void CreateConstant(string name, bool isSystem, string value)
     {
+      if (ConstantsSettings.GetAll(p => p.Name == name).Any())
+        return;
+      
       var newConstant = ConstantsSettings.Create();
       newConstant.Name = name;
       newConstant.IsSystem = isSystem;
@@ -37,6 +40,9 @@ namespace DirRX.AppliedConstants.Server
     [Public, Remote]
     public virtual void CreateConstant(string name, bool isSystem, Double value)
     {
+      if (ConstantsSettings.GetAll(p => p.Name == name).Any())
+        return;
+      
       var newConstant = ConstantsSettings.Create();
       newConstant.Name = name;
       newConstant.IsSystem = isSystem;
@@ -57,6 +63,9 @@ namespace DirRX.AppliedConstants.Server
     [Public, Remote]
     public virtual void CreateConstant(string name, bool isSystem, DateTime value)
     {
+      if (ConstantsSettings.GetAll(p => p.Name == name).Any())
+        return;
+      
       var newConstant = ConstantsSettings.Create();
       newConstant.Name = name;
       newConstant.IsSystem = isSystem;
@@ -78,6 +87,9 @@ namespace DirRX.AppliedConstants.Server
     [Public, Remote]
     public virtual void CreateConstant(string name, bool isSystem, string value, bool isPassword)
     {
+      if (ConstantsSettings.GetAll(p => p.Name == name).Any())
+        return;
+      
       var newConstant = ConstantsSettings.Create();
       newConstant.Name = name;
       newConstant.IsSystem = isSystem;
