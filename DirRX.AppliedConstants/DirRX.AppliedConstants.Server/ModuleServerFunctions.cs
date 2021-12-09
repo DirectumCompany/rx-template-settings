@@ -129,5 +129,68 @@ namespace DirRX.AppliedConstants.Server
       
       return null;
     }
+    
+        /// <summary>
+    /// Получить значение константы.
+    /// </summary>
+    /// <param name="name">Имя константы.</param>
+    /// <returns>Значение константы.</returns>
+    [Public]
+    public virtual string GetStringValue(string name)
+    {
+      var constant = ConstantsSettings.GetAll().FirstOrDefault(p => p.Name == name);
+      if (constant != null)
+      {
+        if (constant.Type == AppliedConstants.ConstantsSetting.Type.StringType)
+          return constant.StringValue;
+
+        if (constant.Type == AppliedConstants.ConstantsSetting.Type.PasswordType)
+          return constant.PasswordValue;
+
+        return constant.Value;
+      }
+      
+      return null;
+    }
+    
+    /// <summary>
+    /// Получить значение константы.
+    /// </summary>
+    /// <param name="name">Имя константы.</param>
+    /// <returns>Значение константы.</returns>
+    [Public]
+    public virtual double? GetDoubleValue(string name)
+    {
+      var constant = ConstantsSettings.GetAll().FirstOrDefault(p => p.Name == name);
+      if (constant != null)
+      {
+        if (constant.Type == AppliedConstants.ConstantsSetting.Type.NumberType)
+          return constant.NumberValue;
+        
+        return null;
+      }
+      
+      return null;
+    }
+    
+    /// <summary>
+    /// Получить значение константы.
+    /// </summary>
+    /// <param name="name">Имя константы.</param>
+    /// <returns>Значение константы.</returns>
+    [Public]
+    public virtual DateTime? GetDateTimeValue(string name)
+    {
+      var constant = ConstantsSettings.GetAll().FirstOrDefault(p => p.Name == name);
+      if (constant != null)
+      {
+        if (constant.Type == AppliedConstants.ConstantsSetting.Type.DateTimeType)
+          return constant.DateTimeValue.Value;
+        
+        return null;
+      }
+      
+      return null;
+    }
   }
 }

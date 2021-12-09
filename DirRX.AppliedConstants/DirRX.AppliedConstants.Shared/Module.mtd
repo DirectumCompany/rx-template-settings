@@ -150,6 +150,42 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
+      "Name": "GetDateTimeValue",
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.Nullable<global::System.DateTime>",
+      "ReturnTypeFullName": "System.Nullable"
+    },
+    {
+      "Name": "GetDoubleValue",
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.Nullable<global::System.Double>",
+      "ReturnTypeFullName": "System.Nullable"
+    },
+    {
+      "Name": "GetStringValue",
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
       "Name": "GetValue",
       "Parameters": [
         {
