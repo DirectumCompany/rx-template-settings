@@ -44,6 +44,8 @@
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "InterfaceNamespace": "DirRX.AppliedConstants",
+  "IsolatedAssemblyName": "DirRX.AppliedConstants.Isolated",
+  "IsolatedNamespace": "DirRX.AppliedConstants.Isolated",
   "IsVisible": false,
   "Overridden": [
     "IsVisible"
