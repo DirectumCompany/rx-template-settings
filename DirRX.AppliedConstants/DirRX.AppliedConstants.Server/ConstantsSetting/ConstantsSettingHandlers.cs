@@ -22,14 +22,14 @@ namespace DirRX.AppliedConstants
       if (_obj.Type == AppliedConstants.ConstantsSetting.Type.StringType)
         _obj.PublicValue = _obj.Value = _obj.StringValue;
       if (_obj.Type == AppliedConstants.ConstantsSetting.Type.NumberType)
-         _obj.PublicValue = _obj.Value = _obj.NumberValue.ToString();
-      if (_obj.Type == AppliedConstants.ConstantsSetting.Type.DateTimeType)
-         _obj.PublicValue = _obj.Value = _obj.DateTimeValue.Value.ToShortDateString();
+        _obj.PublicValue = _obj.Value = _obj.NumberValue.ToString();
+      if (_obj.Type == AppliedConstants.ConstantsSetting.Type.DateTimeType && _obj.DateTimeValue.HasValue)
+        _obj.PublicValue = _obj.Value = _obj.DateTimeValue.Value.ToShortDateString();
       if (_obj.Type ==  AppliedConstants.ConstantsSetting.Type.PasswordType)
       {
         _obj.Value = _obj.PasswordTemp;
         _obj.PasswordTemp = string.Empty;
-         _obj.PublicValue = _obj.PasswordValue = "*******";
+        _obj.PublicValue = _obj.PasswordValue = "*******";
       }
     }
   }
