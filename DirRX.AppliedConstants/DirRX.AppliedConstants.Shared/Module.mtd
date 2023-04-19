@@ -21,7 +21,8 @@
     "Header": {
       "NameGuid": "5f087f69-6186-49d7-8d87-b9d8bbe920f5",
       "BackgroundPosition": "Stretch"
-    }
+    },
+    "Tabs": []
   },
   "Dependencies": [
     {
@@ -43,6 +44,8 @@
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "InterfaceNamespace": "DirRX.AppliedConstants",
+  "IsolatedAssemblyName": "DirRX.AppliedConstants.Isolated",
+  "IsolatedNamespace": "DirRX.AppliedConstants.Isolated",
   "IsVisible": false,
   "Overridden": [
     "IsVisible"
@@ -214,7 +217,7 @@
   "Versions": [
     {
       "Type": "ModuleMetadata",
-      "Number": 6
+      "Number": 8
     },
     {
       "Type": "DomainApi",
