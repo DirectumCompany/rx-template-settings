@@ -41,7 +41,6 @@
   "HandledEvents": [
     "InitializingServer"
   ],
-  "IconResourcesKeys": [],
   "Importance": "Medium",
   "InterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "InterfaceNamespace": "DirRX.AppliedConstants",
@@ -198,7 +197,7 @@
           "ParameterTypeFullName": "System.String"
         }
       ],
-      "ReturnType": "dynamic"
+      "ReturnType": "System.Object"
     }
   ],
   "PublicStructures": [],
@@ -218,7 +217,7 @@
   "Versions": [
     {
       "Type": "ModuleMetadata",
-      "Number": 9
+      "Number": 11
     },
     {
       "Type": "DomainApi",
