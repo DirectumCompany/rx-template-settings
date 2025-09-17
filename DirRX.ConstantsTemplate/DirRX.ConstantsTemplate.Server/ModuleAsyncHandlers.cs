@@ -6,7 +6,7 @@ using Sungero.CoreEntities;
 
 namespace DirRX.ConstantsTemplate.Server
 {
-  public class ModuleAsyncHandlers
+  public partial class ModuleAsyncHandlers
   {
 
   }

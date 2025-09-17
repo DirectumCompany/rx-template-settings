@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -6,7 +6,7 @@ using Sungero.CoreEntities;
 
 namespace DirRX.AppliedConstants.Server
 {
-  public class ModuleFunctions
+  public partial class ModuleFunctions
   {
     /// <summary>
     /// Создать прикладную константу.
@@ -108,7 +108,7 @@ namespace DirRX.AppliedConstants.Server
     /// <param name="name">Имя константы.</param>
     /// <returns>Значение константы.</returns>
     [Public]
-    public virtual dynamic GetValue(string name)
+    public virtual object GetValue(string name)
     {
       var constant = ConstantsSettings.GetAll().FirstOrDefault(p => p.Name == name);
       if (constant != null)
