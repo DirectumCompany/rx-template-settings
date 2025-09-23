@@ -123,7 +123,8 @@ namespace DirRX.AppliedConstants.Server
           return constant.DateTimeValue.Value;
         
         if (constant.Type == AppliedConstants.ConstantsSetting.Type.PasswordType)
-          return constant.PasswordValue;
+          return constant.Value;
+        
         return constant.Value;
       }
       
@@ -145,7 +146,7 @@ namespace DirRX.AppliedConstants.Server
           return constant.StringValue;
 
         if (constant.Type == AppliedConstants.ConstantsSetting.Type.PasswordType)
-          return constant.PasswordValue;
+          return constant.Value;
 
         return constant.Value;
       }
