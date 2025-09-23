@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -9,6 +9,11 @@ namespace DirRX.AppliedConstants
 {
   partial class ConstantsSettingClientHandlers
   {
+
+    public override void Refresh(Sungero.Presentation.FormRefreshEventArgs e)
+    {
+      Functions.ConstantsSetting.SetPropertiesState(_obj);
+    }
 
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
     {
