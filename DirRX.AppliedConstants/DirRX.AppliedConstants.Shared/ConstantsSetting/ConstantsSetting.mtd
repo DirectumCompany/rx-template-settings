@@ -4,6 +4,7 @@
   "Name": "ConstantsSetting",
   "BaseGuid": "04581d26-0780-4cfd-b3cd-c2cafc5798b0",
   "CanBeNavigationPropertyType": true,
+  "CanBeSearch": true,
   "Code": "ConstantsSetti",
   "CreationAreaMetadata": {
     "NameGuid": "f7766750-eee2-4fcd-8003-5c06a90d1f44",
@@ -139,10 +140,14 @@
   "HandledEvents": [
     "ShowingClient",
     "BeforeSaveServer",
-    "CreatedServer"
+    "CreatedServer",
+    "RefreshClient"
   ],
   "IconResourcesKeys": [],
   "OperationsClass": "",
+  "Overridden": [
+    "CanBeSearch"
+  ],
   "Properties": [
     {
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
@@ -159,7 +164,10 @@
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
       "NameGuid": "2e671a96-f3a9-4358-8aeb-3e5203a38ed5",
       "Name": "Value",
+      "CanBeSearch": false,
       "Code": "Value",
+      "IsShowedInList": false,
+      "IsVisibility": false,
       "Length": 500,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "316eafed-443f-4ce2-be1c-f5b6d350bf0d"
@@ -211,6 +219,7 @@
       "NameGuid": "e301afbd-192e-4864-97f7-2a974b11c312",
       "Name": "StringValue",
       "Code": "StringValue",
+      "IsShowedInList": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "878a1fbd-f9b8-4ae1-8c9d-288773f72864"
     },
@@ -219,6 +228,7 @@
       "NameGuid": "92bb2b79-d34f-467b-92c8-fbe6b97427c8",
       "Name": "NumberValue",
       "Code": "NumberValue",
+      "IsShowedInList": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.NumericEditorToIntAndDoubleBinder",
       "PreviousPropertyGuid": "e301afbd-192e-4864-97f7-2a974b11c312"
     },
@@ -227,6 +237,7 @@
       "NameGuid": "025d3556-42f0-4aec-a713-537797b96b70",
       "Name": "DateTimeValue",
       "Code": "DateTimeValue",
+      "IsShowedInList": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.DateTimeEditorToDateTimeBinder",
       "PreviousPropertyGuid": "92bb2b79-d34f-467b-92c8-fbe6b97427c8"
     },
@@ -238,6 +249,7 @@
       "HandledEvents": [
         "ChangedShared"
       ],
+      "IsShowedInList": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "025d3556-42f0-4aec-a713-537797b96b70"
     },
@@ -246,6 +258,8 @@
       "NameGuid": "b24f3ed5-e505-4bb1-8ff6-f09c7f1b9d99",
       "Name": "PasswordTemp",
       "Code": "PasswordTemp",
+      "IsShowedInList": false,
+      "IsVisibility": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "adacf048-6c33-4d30-8131-6171cbbd12e4"
     },
