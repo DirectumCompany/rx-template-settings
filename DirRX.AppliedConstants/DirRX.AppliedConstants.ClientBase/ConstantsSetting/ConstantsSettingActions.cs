@@ -7,4 +7,5 @@ using DirRX.AppliedConstants.ConstantsSetting;
 
 namespace DirRX.AppliedConstants.Client
 {
+
 }
