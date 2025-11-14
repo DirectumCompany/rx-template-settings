@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
 using Sungero.CoreEntities;
-using DirRX.AppliedConstants.ConstantsSetting;
+using DirRX.AppliedConstants.ConstantsGroup;
 
 namespace DirRX.AppliedConstants.Client
 {
-  partial class ConstantsSettingActions
+  partial class ConstantsGroupActions
   {
     public override void DeleteEntity(Sungero.Domain.Client.ExecuteActionArgs e)
     {

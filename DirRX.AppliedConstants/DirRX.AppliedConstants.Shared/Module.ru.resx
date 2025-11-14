@@ -58,10 +58,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppliedConstantManagerRoleName" xml:space="preserve">
-    <value>Менеджер прикладных констант</value>
+  <data name="ExpressionElement_GetStringValue_Name" xml:space="preserve">
+    <value>Получить строку</value>
   </data>
-  <data name="AppliedConstantManagerRoleDescription" xml:space="preserve">
-    <value>Сотрудники, которые могут изменять прикладные константы.</value>
+  <data name="ExpressionElement_GetDoubleValue_Name" xml:space="preserve">
+    <value>Получить вещественное число</value>
+  </data>
+  <data name="ExpressionElement_GetIntegerValue_Name" xml:space="preserve">
+    <value>Получить целое число</value>
+  </data>
+  <data name="ExpressionElement_GetIdentifierValue_Name" xml:space="preserve">
+    <value>Получить идентификатор</value>
+  </data>
+  <data name="ExpressionElement_GetDateValue_Name" xml:space="preserve">
+    <value>Получить дату</value>
+  </data>
+  <data name="ExpressionElement_GetBoolValue_Name" xml:space="preserve">
+    <value>Получить логический признак</value>
+  </data>
+  <data name="ExpressionElement_GetStringValue_Description" xml:space="preserve">
+    <value>Возвращает значение, указанное в константе типа строка.</value>
+  </data>
+  <data name="ExpressionElement_GetDoubleValue_Description" xml:space="preserve">
+    <value>Возвращает значение, указанное в константе типа вещественное число.</value>
+  </data>
+  <data name="ExpressionElement_GetIntegerValue_Description" xml:space="preserve">
+    <value>Возвращает значение, указанное в константе типа целое число.</value>
+  </data>
+  <data name="ExpressionElement_GetIdentifierValue_Description" xml:space="preserve">
+    <value>Возвращает значение, указанное в константе типа идентификатор.</value>
+  </data>
+  <data name="ExpressionElement_GetDateValue_Description" xml:space="preserve">
+    <value>Возвращает значение, указанное в константе типа дата.</value>
+  </data>
+  <data name="ExpressionElement_GetBoolValue_Description" xml:space="preserve">
+    <value>Возвращает значение, указанное в константе типа логическое.</value>
   </data>
 </root>

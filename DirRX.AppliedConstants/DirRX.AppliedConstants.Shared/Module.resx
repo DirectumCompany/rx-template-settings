@@ -58,10 +58,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppliedConstantManagerRoleName" xml:space="preserve">
-    <value>Applied parameters manager</value>
+  <data name="ExpressionElement_GetStringValue_Name" xml:space="preserve">
+    <value>Get string</value>
   </data>
-  <data name="AppliedConstantManagerRoleDescription" xml:space="preserve">
-    <value>Employees, who can edit applied constants.</value>
+  <data name="ExpressionElement_GetDoubleValue_Name" xml:space="preserve">
+    <value>Get double</value>
+  </data>
+  <data name="ExpressionElement_GetIntegerValue_Name" xml:space="preserve">
+    <value>Get integer</value>
+  </data>
+  <data name="ExpressionElement_GetIdentifierValue_Name" xml:space="preserve">
+    <value>Get identifier</value>
+  </data>
+  <data name="ExpressionElement_GetDateValue_Name" xml:space="preserve">
+    <value>Get date</value>
+  </data>
+  <data name="ExpressionElement_GetBoolValue_Name" xml:space="preserve">
+    <value>Get bool</value>
+  </data>
+  <data name="ExpressionElement_GetStringValue_Description" xml:space="preserve">
+    <value>Returns the value specified in a string constant.</value>
+  </data>
+  <data name="ExpressionElement_GetDoubleValue_Description" xml:space="preserve">
+    <value>Returns the value specified in a double constant.</value>
+  </data>
+  <data name="ExpressionElement_GetIntegerValue_Description" xml:space="preserve">
+    <value>Returns the value specified in a integer constant.</value>
+  </data>
+  <data name="ExpressionElement_GetIdentifierValue_Description" xml:space="preserve">
+    <value>Returns the value specified in a identifier constant.</value>
+  </data>
+  <data name="ExpressionElement_GetDateValue_Description" xml:space="preserve">
+    <value>Returns the value specified in a date constant.</value>
+  </data>
+  <data name="ExpressionElement_GetBoolValue_Description" xml:space="preserve">
+    <value>Returns the value specified in a bool constant.</value>
   </data>
 </root>

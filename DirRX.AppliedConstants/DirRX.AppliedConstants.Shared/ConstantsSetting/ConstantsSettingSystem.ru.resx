@@ -76,10 +76,10 @@
   <data name="Enum_Type_StringType" xml:space="preserve">
     <value>Строка</value>
   </data>
-  <data name="Enum_Type_NumberType" xml:space="preserve">
-    <value>Число</value>
+  <data name="Enum_Type_DoubleType" xml:space="preserve">
+    <value>Вещественное число</value>
   </data>
-  <data name="Enum_Type_DateTimeType" xml:space="preserve">
+  <data name="Enum_Type_DateType" xml:space="preserve">
     <value>Дата</value>
   </data>
   <data name="Property_Type" xml:space="preserve">
@@ -88,10 +88,10 @@
   <data name="Property_StringValue" xml:space="preserve">
     <value>Значение</value>
   </data>
-  <data name="Property_NumberValue" xml:space="preserve">
+  <data name="Property_DoubleValue" xml:space="preserve">
     <value>Значение</value>
   </data>
-  <data name="Property_DateTimeValue" xml:space="preserve">
+  <data name="Property_DateValue" xml:space="preserve">
     <value>Значение</value>
   </data>
   <data name="Property_PasswordValue" xml:space="preserve">
@@ -102,5 +102,35 @@
   </data>
   <data name="Property_PublicValue" xml:space="preserve">
     <value>Отображаемое значение</value>
+  </data>
+  <data name="Property_BoolValue" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="Property_Note" xml:space="preserve">
+    <value>Примечание</value>
+  </data>
+  <data name="Enum_Type_IntegerType" xml:space="preserve">
+    <value>Целое число</value>
+  </data>
+  <data name="Enum_Type_IdentifierType" xml:space="preserve">
+    <value>Идентификатор</value>
+  </data>
+  <data name="Enum_Type_BoolType" xml:space="preserve">
+    <value>Логическое</value>
+  </data>
+  <data name="Property_IdentifierValue" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="Property_IntegerValue" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="Property_IsSystem" xml:space="preserve">
+    <value>Системная</value>
+  </data>
+  <data name="Property_ConstantsGroup" xml:space="preserve">
+    <value>Группа констант</value>
+  </data>
+  <data name="Property_Value" xml:space="preserve">
+    <value>Значение</value>
   </data>
 </root>

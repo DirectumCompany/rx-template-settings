@@ -36,6 +36,10 @@
   "ExplorerTreeOrder": [
     {
       "ItemId": "14535c4a-ad17-40c1-8473-700367a9dc4f"
+    },
+    {
+      "ItemId": "3c7a89ff-fb39-4122-8997-31a92ae5556d",
+      "PreviousItemId": "14535c4a-ad17-40c1-8473-700367a9dc4f"
     }
   ],
   "HandledEvents": [
@@ -52,6 +56,25 @@
   ],
   "PublicFunctions": [
     {
+      "Name": "CheckConstantType",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "constant",
+          "ParameterType": "global::DirRX.AppliedConstants.IConstantsSetting",
+          "ParameterTypeFullName": "DirRX.AppliedConstants.IConstantsSetting, Sungero.Domain.Interfaces"
+        },
+        {
+          "Name": "type",
+          "ParameterType": "global::System.Nullable<global::Sungero.Core.Enumeration>",
+          "ParameterTypeFullName": "System.Nullable"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Boolean",
+      "ReturnTypeFullName": "System.Boolean"
+    },
+    {
       "Name": "CreateConstant",
       "IsRemote": true,
       "Parameters": [
@@ -61,12 +84,17 @@
           "ParameterTypeFullName": "System.String"
         },
         {
-          "Name": "isSystem",
-          "ParameterType": "global::System.Boolean",
-          "ParameterTypeFullName": "System.Boolean"
+          "Name": "value",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
         },
         {
-          "Name": "value",
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "groupGuid",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
         }
@@ -83,16 +111,21 @@
           "Name": "name",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
-        },
-        {
-          "Name": "isSystem",
-          "ParameterType": "global::System.Boolean",
-          "ParameterTypeFullName": "System.Boolean"
         },
         {
           "Name": "value",
           "ParameterType": "global::System.Double",
           "ParameterTypeFullName": "System.Double"
+        },
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "groupGuid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
         }
       ],
       "Placement": "Shared",
@@ -109,14 +142,77 @@
           "ParameterTypeFullName": "System.String"
         },
         {
-          "Name": "isSystem",
-          "ParameterType": "global::System.Boolean",
-          "ParameterTypeFullName": "System.Boolean"
+          "Name": "value",
+          "ParameterType": "global::System.Int64",
+          "ParameterTypeFullName": "System.Int64"
+        },
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "groupGuid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "CreateConstant",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "value",
+          "ParameterType": "global::System.Int32",
+          "ParameterTypeFullName": "System.Int32"
+        },
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "groupGuid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "CreateConstant",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
         },
         {
           "Name": "value",
           "ParameterType": "global::System.DateTime",
           "ParameterTypeFullName": "System.DateTime"
+        },
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "groupGuid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
         }
       ],
       "Placement": "Shared",
@@ -133,19 +229,19 @@
           "ParameterTypeFullName": "System.String"
         },
         {
-          "Name": "isSystem",
+          "Name": "value",
           "ParameterType": "global::System.Boolean",
           "ParameterTypeFullName": "System.Boolean"
         },
         {
-          "Name": "value",
+          "Name": "guid",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
         },
         {
-          "Name": "isPassword",
-          "ParameterType": "global::System.Boolean",
-          "ParameterTypeFullName": "System.Boolean"
+          "Name": "groupGuid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
         }
       ],
       "Placement": "Shared",
@@ -153,59 +249,182 @@
       "ReturnTypeFullName": "System.Void"
     },
     {
-      "Name": "GetDateTimeValue",
+      "Name": "CreateConstantsGroup",
+      "IsRemote": true,
       "Parameters": [
         {
           "Name": "name",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
         }
       ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "CreatePasswordConstant",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "value",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "groupGuid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "void",
+      "ReturnTypeFullName": "System.Void"
+    },
+    {
+      "Name": "GetBoolValue",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Nullable<global::System.Boolean>",
+      "ReturnTypeFullName": "System.Nullable"
+    },
+    {
+      "Name": "GetDateValue",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
       "ReturnType": "global::System.Nullable<global::System.DateTime>",
       "ReturnTypeFullName": "System.Nullable"
     },
     {
       "Name": "GetDoubleValue",
+      "IsRemote": true,
       "Parameters": [
         {
-          "Name": "name",
+          "Name": "guid",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
         }
       ],
+      "Placement": "Shared",
       "ReturnType": "global::System.Nullable<global::System.Double>",
       "ReturnTypeFullName": "System.Nullable"
     },
     {
-      "Name": "GetStringValue",
+      "Name": "GetIdentifierValue",
+      "IsRemote": true,
       "Parameters": [
         {
-          "Name": "name",
+          "Name": "guid",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
         }
       ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Nullable<global::System.Int64>",
+      "ReturnTypeFullName": "System.Nullable"
+    },
+    {
+      "Name": "GetIntegerValue",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Nullable<global::System.Int32>",
+      "ReturnTypeFullName": "System.Nullable"
+    },
+    {
+      "Name": "GetPasswordValue",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
       "ReturnType": "global::System.String",
       "ReturnTypeFullName": "System.String"
     },
     {
-      "Name": "GetValue",
+      "Name": "GetStringValue",
+      "IsRemote": true,
       "Parameters": [
         {
-          "Name": "name",
+          "Name": "guid",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
         }
       ],
-      "ReturnType": "System.Object"
+      "Placement": "Shared",
+      "ReturnType": "global::System.String",
+      "ReturnTypeFullName": "System.String"
+    },
+    {
+      "Name": "GetСonstant",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::DirRX.AppliedConstants.IConstantsSetting",
+      "ReturnTypeFullName": "DirRX.AppliedConstants.IConstantsSetting, Sungero.Domain.Interfaces"
     }
   ],
   "PublicStructures": [],
   "ResourceInterfaceAssemblyName": "Sungero.Domain.Interfaces",
   "ResourceInterfaceNamespace": "DirRX.AppliedConstants",
   "ResourcesKeys": [
-    "AppliedConstantManagerRoleName",
-    "AppliedConstantManagerRoleDescription"
+    "ExpressionElement_GetStringValue_Name",
+    "ExpressionElement_GetDoubleValue_Name",
+    "ExpressionElement_GetIntegerValue_Name",
+    "ExpressionElement_GetIdentifierValue_Name",
+    "ExpressionElement_GetDateValue_Name",
+    "ExpressionElement_GetBoolValue_Name",
+    "ExpressionElement_GetStringValue_Description",
+    "ExpressionElement_GetDoubleValue_Description",
+    "ExpressionElement_GetIntegerValue_Description",
+    "ExpressionElement_GetIdentifierValue_Description",
+    "ExpressionElement_GetDateValue_Description",
+    "ExpressionElement_GetBoolValue_Description"
   ],
   "ServerAssemblyName": "DirRX.AppliedConstants.Server",
   "ServerNamespace": "DirRX.AppliedConstants.Server",

@@ -59,9 +59,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GuidFieldIsEmptyError" xml:space="preserve">
-    <value>The Guid field for the system constant is empty</value>
-  </data>
-  <data name="ConstantsGroupIsEmptyError" xml:space="preserve">
-    <value>The Constant group field for the system constant is empty</value>
+    <value>The Guid field for the system constant group is empty</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sungero.Core;
@@ -14,22 +14,35 @@ namespace DirRX.AppliedConstants
     public override void Created(Sungero.Domain.CreatedEventArgs e)
     {
       _obj.PasswordTemp = null;
-      
+      _obj.IsSystem = false;
+      _obj.BoolValue = false;
     }
 
     public override void BeforeSave(Sungero.Domain.BeforeSaveEventArgs e)
     {
+      if (_obj.IsSystem == true && string.IsNullOrEmpty(_obj.Guid))
+        e.AddError(DirRX.AppliedConstants.ConstantsSettings.Resources.GuidFieldIsEmptyError);
+      if (_obj.IsSystem == true && _obj.ConstantsGroup == null)
+        e.AddError(DirRX.AppliedConstants.ConstantsSettings.Resources.ConstantsGroupIsEmptyError);
+      
       if (_obj.Type == AppliedConstants.ConstantsSetting.Type.StringType)
         _obj.PublicValue = _obj.Value = _obj.StringValue;
-      if (_obj.Type == AppliedConstants.ConstantsSetting.Type.NumberType)
-        _obj.PublicValue = _obj.Value = _obj.NumberValue.ToString();
-      if (_obj.Type == AppliedConstants.ConstantsSetting.Type.DateTimeType && _obj.DateTimeValue.HasValue)
-        _obj.PublicValue = _obj.Value = _obj.DateTimeValue.Value.ToShortDateString();
-      if (_obj.Type ==  AppliedConstants.ConstantsSetting.Type.PasswordType)
+      if (_obj.Type == AppliedConstants.ConstantsSetting.Type.IntegerType)
+        _obj.PublicValue = _obj.Value = _obj.IntegerValue.ToString();
+      if (_obj.Type == AppliedConstants.ConstantsSetting.Type.DateType)
+        _obj.PublicValue = _obj.Value = _obj.DoubleValue.ToString();
+      if (_obj.Type == AppliedConstants.ConstantsSetting.Type.IdentifierType)
+        _obj.PublicValue = _obj.Value = _obj.IdentifierValue.ToString();
+      if (_obj.Type == AppliedConstants.ConstantsSetting.Type.DateType && _obj.DateValue.HasValue)
+        _obj.PublicValue = _obj.Value = _obj.DateValue.Value.ToShortDateString();
+      if (_obj.Type == AppliedConstants.ConstantsSetting.Type.BoolType && _obj.BoolValue.HasValue)
+        _obj.PublicValue = _obj.Value = _obj.BoolValue.ToString();
+      if (_obj.Type == AppliedConstants.ConstantsSetting.Type.PasswordType && !_obj.PasswordTemp.Equals(Constants.ConstantsSetting.HidePasswordValue))
       {
-        _obj.Value = _obj.PasswordTemp;
+        _obj.Value = Encryption.Encrypt(_obj.PasswordTemp);
         _obj.PasswordTemp = string.Empty;
-        _obj.PublicValue = _obj.PasswordValue = "*******";
+        _obj.PasswordValue = Constants.ConstantsSetting.HidePasswordValue;
+        _obj.PublicValue = Constants.ConstantsSetting.HidePasswordValue;
       }
     }
   }

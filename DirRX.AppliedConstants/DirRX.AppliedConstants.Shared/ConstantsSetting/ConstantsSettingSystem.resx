@@ -74,10 +74,10 @@
     <value>Constants</value>
   </data>
   <data name="Property_Value" xml:space="preserve">
-    <value>Значение</value>
+    <value>Value</value>
   </data>
   <data name="Property_IsSystem" xml:space="preserve">
-    <value>Системное</value>
+    <value>System</value>
   </data>
   <data name="Property_Type" xml:space="preserve">
     <value>Type</value>
@@ -85,20 +85,20 @@
   <data name="Enum_Type_StringType" xml:space="preserve">
     <value>String</value>
   </data>
-  <data name="Enum_Type_NumberType" xml:space="preserve">
-    <value>Number</value>
+  <data name="Enum_Type_DoubleType" xml:space="preserve">
+    <value>Double</value>
   </data>
-  <data name="Enum_Type_DateTimeType" xml:space="preserve">
-    <value>DateTime</value>
+  <data name="Enum_Type_DateType" xml:space="preserve">
+    <value>Date</value>
   </data>
   <data name="Property_StringValue" xml:space="preserve">
     <value>String value</value>
   </data>
-  <data name="Property_NumberValue" xml:space="preserve">
-    <value>Number value</value>
+  <data name="Property_DoubleValue" xml:space="preserve">
+    <value>Value</value>
   </data>
-  <data name="Property_DateTimeValue" xml:space="preserve">
-    <value>DateTime value</value>
+  <data name="Property_DateValue" xml:space="preserve">
+    <value>Value</value>
   </data>
   <data name="Property_PasswordValue" xml:space="preserve">
     <value>Password</value>
@@ -111,5 +111,32 @@
   </data>
   <data name="Property_PublicValue" xml:space="preserve">
     <value>Public value</value>
+  </data>
+  <data name="Property_BoolValue" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Property_Guid" xml:space="preserve">
+    <value>Guid</value>
+  </data>
+  <data name="Property_Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Enum_Type_IntegerType" xml:space="preserve">
+    <value>Integer</value>
+  </data>
+  <data name="Enum_Type_IdentifierType" xml:space="preserve">
+    <value>Identifier</value>
+  </data>
+  <data name="Enum_Type_BoolType" xml:space="preserve">
+    <value>Bool</value>
+  </data>
+  <data name="Property_IdentifierValue" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Property_IntegerValue" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="Property_ConstantsGroup" xml:space="preserve">
+    <value>Constants group</value>
   </data>
 </root>
