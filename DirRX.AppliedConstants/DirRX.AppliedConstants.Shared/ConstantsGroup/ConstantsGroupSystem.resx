@@ -76,4 +76,22 @@
   <data name="Property_IsSystem" xml:space="preserve">
     <value>System</value>
   </data>
+  <data name="Action_ShowDuplicates" xml:space="preserve">
+    <value>Show duplicates</value>
+  </data>
+  <data name="Action_ShowDuplicatesDescription" xml:space="preserve">
+    <value>Displays a list of found duplicates.</value>
+  </data>
+  <data name="Action_ShowDuplicatesHint" xml:space="preserve">
+    <value>Show a list of found duplicates</value>
+  </data>
+  <data name="Action_ShowDuplicatesConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_ShowDuplicatesConfirmationDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Property_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
 </root>

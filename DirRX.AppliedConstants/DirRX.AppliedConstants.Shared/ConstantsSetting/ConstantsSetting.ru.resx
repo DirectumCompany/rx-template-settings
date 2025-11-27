@@ -64,4 +64,10 @@
   <data name="ConstantsGroupIsEmptyError" xml:space="preserve">
     <value>Не заполнено поле Группа констант для системной константы</value>
   </data>
+  <data name="TrueLocalizedValue" xml:space="preserve">
+    <value>Истина</value>
+  </data>
+  <data name="FalseLocalizedValue" xml:space="preserve">
+    <value>Ложь</value>
+  </data>
 </root>

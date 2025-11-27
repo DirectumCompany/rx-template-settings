@@ -9,10 +9,19 @@ namespace DirRX.AppliedConstants
 {
   partial class ConstantsSettingSharedHandlers
   {
-
     public virtual void PasswordValueChanged(Sungero.Domain.Shared.StringPropertyChangedEventArgs e)
     {
-      _obj.PasswordTemp = e.NewValue;
+      // Если в пароле указана специальная строка из константы HidePasswordValue, то указанное значение не является паролем.
+      if (e.NewValue != e.OldValue && e.NewValue != Constants.ConstantsSetting.HidePasswordValue)
+      {
+        // Если новое значение - пустая строка, очищаем все поля пароля.
+        // Иначе сохраняем новый пароль как временный на время сессии редактирования.
+        // При сохранении прикладной константы он будет зашифрован и записан в специальное поле.
+        if (string.IsNullOrEmpty(e.NewValue))
+          Functions.ConstantsSetting.ClearPasswordValue(_obj);
+        else
+          _obj.PasswordTemp = e.NewValue;
+      }
     }
 
     public virtual void TypeChanged(Sungero.Domain.Shared.EnumerationPropertyChangedEventArgs e)
@@ -33,7 +42,7 @@ namespace DirRX.AppliedConstants
         if (e.NewValue != ConstantsSetting.Type.IntegerType && _obj.IntegerValue != null)
           _obj.IntegerValue = null;
         if (e.NewValue != ConstantsSetting.Type.PasswordType && _obj.PasswordValue != null)
-          _obj.PasswordValue = null;
+          Functions.ConstantsSetting.ClearPasswordValue(_obj);
       }
       
       Functions.ConstantsSetting.SetPropertiesState(_obj);

@@ -104,7 +104,7 @@
     <value>Password</value>
   </data>
   <data name="Property_PasswordTemp" xml:space="preserve">
-    <value>pw</value>
+    <value>Temporary password</value>
   </data>
   <data name="Enum_Type_PasswordType" xml:space="preserve">
     <value>Password</value>
@@ -118,8 +118,8 @@
   <data name="Property_Guid" xml:space="preserve">
     <value>Guid</value>
   </data>
-  <data name="Property_Note" xml:space="preserve">
-    <value>Note</value>
+  <data name="Property_Description" xml:space="preserve">
+    <value>Description</value>
   </data>
   <data name="Enum_Type_IntegerType" xml:space="preserve">
     <value>Integer</value>
@@ -138,5 +138,20 @@
   </data>
   <data name="Property_ConstantsGroup" xml:space="preserve">
     <value>Constants group</value>
+  </data>
+  <data name="Action_ShowDuplicates" xml:space="preserve">
+    <value>Show duplicates</value>
+  </data>
+  <data name="Action_ShowDuplicatesDescription" xml:space="preserve">
+    <value>Displays a list of found duplicates.</value>
+  </data>
+  <data name="Action_ShowDuplicatesHint" xml:space="preserve">
+    <value>Show a list of found duplicates</value>
+  </data>
+  <data name="Action_ShowDuplicatesConfirmationMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Action_ShowDuplicatesConfirmationDescription" xml:space="preserve">
+    <value />
   </data>
 </root>
