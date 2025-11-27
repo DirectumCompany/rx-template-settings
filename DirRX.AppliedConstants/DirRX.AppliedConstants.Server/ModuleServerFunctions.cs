@@ -20,7 +20,7 @@ namespace DirRX.AppliedConstants.Server
     {
       var constant = ConstantsSettings.GetAll(p => p.Guid == guid).FirstOrDefault();
       if (constant == null)
-        Logger.ErrorFormat("GetСonstant. Guid: {0}. Константы с таким guid не существует в системе.", guid);
+        Logger.ErrorFormat("AppliedConstants. GetСonstant. Guid: \"{0}\". Константы с таким guid не существует в системе.", guid);
       
       return constant;
     }
@@ -39,10 +39,57 @@ namespace DirRX.AppliedConstants.Server
       
       var isCorrectType = constant.Type == type;
       if (!isCorrectType)
-        Logger.ErrorFormat("CheckConstantType. Имя: {0}. Guid: {1}. Тип константы не соответствует. Ожидаемый: {2}. Фактический: {3}.", constant.Name, constant.Guid,
+        Logger.ErrorFormat("AppliedConstants. CheckConstantType. Имя: \"{0}\". Guid: \"{1}\". Тип константы не соответствует. Ожидаемый: {2}. Фактический: {3}.", constant.Name, constant.Guid,
                            ConstantsSettings.Info.Properties.Type.GetLocalizedValue(type), ConstantsSettings.Info.Properties.Type.GetLocalizedValue(constant.Type));
       
       return isCorrectType;
+    }
+    
+    /// <summary>
+    /// Преобразовать строковое значение в список строк.
+    /// </summary>
+    /// <param name="value">Строка с элементами, разделёнными разделителем.</param>
+    /// <returns>Список строк без пустых элементов и с обрезанными пробелами.</returns>
+    [Public, Remote(IsPure = true)]
+    public static List<string> ParseStringList(string value)
+    {
+      if (string.IsNullOrWhiteSpace(value))
+      {
+        Logger.Error("AppliedConstants. ParseStringList. Пустое или некорректное строковое значение.");
+        return new List<string>();
+      }
+      
+      // Символ-разделитель, по умолчанию запятая.
+      var separator = Constants.Module.ConstantListSeparator;
+      
+      return value
+        .Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries)
+        .Select(x => x.Trim())
+        .Where(x => !string.IsNullOrEmpty(x))
+        .ToList();
+    }
+    
+    /// <summary>
+    /// Преобразовать строковое значение в список целых чисел.
+    /// </summary>
+    /// <param name="value">Строка со значениями, разделёнными запятыми.</param>
+    /// <returns>Список целых чисел.</returns>
+    [Public, Remote(IsPure = true)]
+    public static List<int> ParseIntegerList(string value)
+    {
+      var result = new List<int>();
+      var items = ParseStringList(value);
+
+      foreach (var item in items)
+      {
+        int parsed;
+        if (int.TryParse(item, out parsed))
+          result.Add(parsed);
+        else
+          Logger.ErrorFormat("AppliedConstants. ParseIntList. Не удалось преобразовать \"{0}\" в int.", item);
+      }
+
+      return result;
     }
 
     #endregion
@@ -53,15 +100,16 @@ namespace DirRX.AppliedConstants.Server
     /// Создать системную прикладную константу.
     /// </summary>
     /// <param name="name">Имя константы.</param>
+    /// <param name="description">Описание.</param>
     /// <param name="guid">Guid константы.</param>
     /// <param name="groupGuid">Guid группы константы.</param>
     /// <returns>Новая или обновленная константа.</returns>
     /// <remarks>Выполняется поиск константы по Guid. Если константа найдена, то выполняется её обновление, иначе создаётся новая.
     /// Для системных констант пользователю недоступны для изменения поля (Имя, Guid, Группа констант, Тип).</remarks>
-    public virtual IConstantsSetting CreateConstant(string name, string guid, string groupGuid)
+    public virtual IConstantsSetting CreateConstant(string name, string description, string guid, string groupGuid)
     {
-      var logPrefix = string.Format("CreateConstant. Name: {0}. Guid: {1}. GroupGuid: {2}", name, guid, groupGuid);
-      Logger.DebugFormat("{0}. Создание прикладной константы.", logPrefix);
+      var logPrefix = string.Format("AppliedConstants. CreateConstant. Name: \"{0}\". Guid: \"{1}\". GroupGuid: \"{2}\"", name, guid, groupGuid);
+      Logger.DebugFormat("{0}. Создание/обновление системной прикладной константы.", logPrefix);
       
       // Валидация вх. переменных.
       if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(guid) || string.IsNullOrEmpty(groupGuid))
@@ -93,9 +141,13 @@ namespace DirRX.AppliedConstants.Server
         }
       }
       
-      // Если константа не сохранена в БД, заполняем её поля.
-      if (constant.State.IsInserted)
+      // Если изменилось системное имя константы, то обновляем его у константы.
+      if (constant.Name != name)
         constant.Name = name;
+      
+      // Если изменилось примечание, то обновляем его у константы.
+      if (constant.Description != description)
+        constant.Description = description;
       
       return constant;
     }
@@ -104,33 +156,43 @@ namespace DirRX.AppliedConstants.Server
     /// Создать системную группу констант.
     /// </summary>
     /// <param name="name">Имя группы констант.</param>
+    /// <param name="description">Описание.</param>
     /// <param name="Guid">Guid группы констант.</param>
     /// <remarks>Для системных групп констант пользователю недоступно для изменения поле Guid.</remarks>
     [Public, Remote]
-    public void CreateConstantsGroup(string name, string guid)
+    public void CreateConstantsGroup(string name, string description, string guid)
     {
-      if (ConstantsGroups.GetAll(p => p.Guid == guid).Any())
-        return;
+      Logger.DebugFormat("AppliedConstants. CreateConstantsGroup. Name: \"{0}\". Guid: \"{1}\". Создание/обновление системной группы констант.", name, guid);
       
-      var newConstantsGroup = ConstantsGroups.Create();
-      newConstantsGroup.Name = name;
-      newConstantsGroup.Guid = guid;
-      newConstantsGroup.IsSystem = true;
-      newConstantsGroup.Save();
+      var сonstantsGroup = ConstantsGroups.GetAll(p => p.Guid == guid).FirstOrDefault() ?? ConstantsGroups.Create();
+      if (сonstantsGroup.Name != name)
+        сonstantsGroup.Name = name;
+      if (сonstantsGroup.Description != description)
+        сonstantsGroup.Description = description;
+      if (сonstantsGroup.Guid != guid)
+        сonstantsGroup.Guid = guid;
+      
+      // Указать признак "Системная".
+      var isSystem = true;
+      if (сonstantsGroup.IsSystem != isSystem)
+        сonstantsGroup.IsSystem = isSystem;
+      if (сonstantsGroup.State.IsChanged)
+        сonstantsGroup.Save();
     }
 
     /// <summary>
     /// Создать системную прикладную константу (Тип - строка).
     /// </summary>
     /// <param name="name">Имя константы.</param>
+    /// <param name="description">Описание.</param>
     /// <param name="value">Строковое значение.</param>
     /// <param name="guid">Guid константы.</param>
     /// <param name="groupGuid">Guid группы константы.</param>
     /// <remarks>Выполняется поиск константы по Guid. Если константа не найдена, то создаётся новая. Для системных констант пользователю недоступны для изменения поля (Имя, Guid, Группа констант, Тип).</remarks>
     [Public, Remote]
-    public virtual void CreateConstant(string name, string value, string guid, string groupGuid)
+    public virtual void CreateConstant(string name, string description, string value, string guid, string groupGuid)
     {
-      var constant = CreateConstant(name, guid, groupGuid);
+      var constant = CreateConstant(name, description, guid, groupGuid);
       if (constant == null)
         return;
       
@@ -149,14 +211,15 @@ namespace DirRX.AppliedConstants.Server
     /// Создать системную прикладную константу (Тип - вещественное число).
     /// </summary>
     /// <param name="name">Имя константы.</param>
+    /// <param name="description">Описание.</param>
     /// <param name="value">Вещественное число.</param>
     /// <param name="guid">Guid константы.</param>
     /// <param name="groupGuid">Guid группы константы.</param>
     /// <remarks>Выполняется поиск константы по Guid. Если константа не найдена, то создаётся новая. Для системных констант пользователю недоступны для изменения поля (Имя, Guid, Группа констант, Тип).</remarks>
     [Public, Remote]
-    public virtual void CreateConstant(string name, double value, string guid, string groupGuid)
+    public virtual void CreateConstant(string name, string description, double value, string guid, string groupGuid)
     {
-      var constant = CreateConstant(name, guid, groupGuid);
+      var constant = CreateConstant(name, description, guid, groupGuid);
       if (constant == null)
         return;
       
@@ -175,14 +238,15 @@ namespace DirRX.AppliedConstants.Server
     /// Создать системную прикладную константу (Тип - идентификатор).
     /// </summary>
     /// <param name="name">Имя константы.</param>
+    /// <param name="description">Описание.</param>
     /// <param name="value">Значение идентификатора.</param>
     /// <param name="guid">Guid константы.</param>
     /// <param name="groupGuid">Guid группы константы.</param>
     /// <remarks>Выполняется поиск константы по Guid. Если константа не найдена, то создается новая. Для системных констант пользователю недоступны для изменения поля (Имя, Guid, Группа констант, Тип).</remarks>
     [Public, Remote]
-    public virtual void CreateConstant(string name, long value, string guid, string groupGuid)
+    public virtual void CreateConstant(string name, string description, long value, string guid, string groupGuid)
     {
-      var constant = CreateConstant(name, guid, groupGuid);
+      var constant = CreateConstant(name, description, guid, groupGuid);
       if (constant == null)
         return;
       
@@ -201,14 +265,15 @@ namespace DirRX.AppliedConstants.Server
     /// Создать системную прикладную константу (Тип - целое число).
     /// </summary>
     /// <param name="name">Имя константы.</param>
+    /// <param name="description">Описание.</param>
     /// <param name="value">Целое число.</param>
     /// <param name="guid">Guid константы.</param>
     /// <param name="groupGuid">Guid группы константы.</param>
     /// <remarks>Выполняется поиск константы по Guid. Если константа не найдена, то создаётся новая. Для системных констант пользователю недоступны для изменения поля (Имя, Guid, Группа констант, Тип).</remarks>
     [Public, Remote]
-    public virtual void CreateConstant(string name, int value, string guid, string groupGuid)
+    public virtual void CreateConstant(string name, string description, int value, string guid, string groupGuid)
     {
-      var constant = CreateConstant(name, guid, groupGuid);
+      var constant = CreateConstant(name, description, guid, groupGuid);
       if (constant == null)
         return;
       
@@ -227,14 +292,15 @@ namespace DirRX.AppliedConstants.Server
     /// Создать системную прикладную константу (Тип - дата).
     /// </summary>
     /// <param name="name">Имя константы.</param>
+    /// <param name="description">Описание.</param>
     /// <param name="value">Дата.</param>
     /// <param name="guid">Guid константы.</param>
     /// <param name="groupGuid">Guid группы константы.</param>
     /// <remarks>Выполняется поиск константы по Guid. Если константа не найдена, то создаётся новая. Для системных констант пользователю недоступны для изменения поля (Имя, Guid, Группа констант, Тип).</remarks>
     [Public, Remote]
-    public virtual void CreateConstant(string name, DateTime value, string guid, string groupGuid)
+    public virtual void CreateConstant(string name, string description, DateTime value, string guid, string groupGuid)
     {
-      var constant = CreateConstant(name, guid, groupGuid);
+      var constant = CreateConstant(name, description, guid, groupGuid);
       if (constant == null)
         return;
       
@@ -253,14 +319,15 @@ namespace DirRX.AppliedConstants.Server
     /// Создать системную прикладную константу (Тип - пароль).
     /// </summary>
     /// <param name="name">Имя константы.</param>
+    /// <param name="description">Описание.</param>
     /// <param name="value">Строковое значение.</param>
     /// <param name="guid">Guid константы.</param>
     /// <param name="groupGuid">Guid группы константы.</param>
     /// <remarks>Выполняется поиск константы по Guid. Если константа не найдена, то создаётся новая. Для системных констант пользователю недоступны для изменения поля (Имя, Guid, Группа констант, Тип).</remarks>
     [Public, Remote]
-    public virtual void CreatePasswordConstant(string name, string value, string guid, string groupGuid)
+    public virtual void CreatePasswordConstant(string name, string description, string value, string guid, string groupGuid)
     {
-      var constant = CreateConstant(name, guid, groupGuid);
+      var constant = CreateConstant(name, description, guid, groupGuid);
       if (constant == null)
         return;
       
@@ -279,14 +346,15 @@ namespace DirRX.AppliedConstants.Server
     /// Создать системную прикладную константу (Тип - логический).
     /// </summary>
     /// <param name="name">Имя константы.</param>
+    /// <param name="description">Описание.</param>
     /// <param name="value">Логическое значение.</param>
     /// <param name="guid">Guid константы.</param>
     /// <param name="groupGuid">Guid группы константы.</param>
     /// <remarks>Выполняется поиск константы по Guid. Если константа не найдена, то создаётся новая. Для системных констант пользователю недоступны для изменения поля (Имя, Guid, Группа констант, Тип).</remarks>
     [Public, Remote]
-    public virtual void CreateConstant(string name, bool value, string guid, string groupGuid)
+    public virtual void CreateConstant(string name, string description, bool value, string guid, string groupGuid)
     {
-      var constant = CreateConstant(name, guid, groupGuid);
+      var constant = CreateConstant(name, description, guid, groupGuid);
       if (constant == null)
         return;
       
@@ -314,10 +382,7 @@ namespace DirRX.AppliedConstants.Server
     public virtual string GetStringValue(string guid)
     {
       var constant = GetСonstant(guid);
-      if (!CheckConstantType(constant, AppliedConstants.ConstantsSetting.Type.StringType))
-        return null;
-      
-      return constant.StringValue;
+      return GetStringValue(constant);
     }
 
     /// <summary>
@@ -391,9 +456,39 @@ namespace DirRX.AppliedConstants.Server
     {
       var constant = GetСonstant(guid);
       if (!CheckConstantType(constant, AppliedConstants.ConstantsSetting.Type.PasswordType))
-        return null;
+        return string.Empty;
 
+      if (string.IsNullOrEmpty(constant.Value))
+      {
+        Logger.DebugFormat("AppliedConstants. GetPasswordValue. Name: \"{0}\". Guid: \"{1}\". Значение прикладной константы не заполнено.", constant.Name, constant.Guid);
+        return string.Empty;
+      }
+      
       return Encryption.Decrypt(constant.Value);
+    }
+    
+    /// <summary>
+    /// Получить список строк из прикладной константы.
+    /// </summary>
+    /// <param name="guid">Guid константы.</param>
+    /// <remarks>Значения хранятся как строка через разделитель. Символ-разделитель по умолчанию - запятая.</remarks>
+    [Public, Remote(IsPure = true)]
+    public virtual List<string> GetStringListValue(string guid)
+    {
+      var constantValue = this.GetStringValue(guid);
+      return ParseStringList(constantValue);
+    }
+
+    /// <summary>
+    /// Получить список целых чисел из прикладной константы.
+    /// </summary>
+    /// <param name="guid">Guid константы.</param>
+    /// <remarks>Значения хранятся как строка через разделитель. Символ-разделитель по умолчанию - запятая.</remarks>
+    [Public, Remote(IsPure = true)]
+    public virtual List<int> GetIntegerListValue(string guid)
+    {
+      var constantValue = this.GetStringValue(guid);
+      return ParseIntegerList(constantValue);
     }
     
     #endregion
@@ -403,7 +498,7 @@ namespace DirRX.AppliedConstants.Server
     /// <summary>
     /// Получить значение прикладной константы (строка).
     /// </summary>
-    /// <param name="guid">Guid константы.</param>
+    /// <param name="constant">Константа.</param>
     /// <returns>Значение константы.</returns>
     [ExpressionElement("ExpressionElement_GetStringValue_Name", "ExpressionElement_GetStringValue_Description")]
     public static string GetStringValue(IConstantsSetting constant)
@@ -414,13 +509,16 @@ namespace DirRX.AppliedConstants.Server
       if (!AppliedConstants.PublicFunctions.Module.Remote.CheckConstantType(constant, AppliedConstants.ConstantsSetting.Type.StringType))
         return null;
       
+      if (string.IsNullOrEmpty(constant.StringValue))
+        Logger.DebugFormat("AppliedConstants. GetStringValue. Name: \"{0}\". Guid: \"{1}\". Не заполнено значение прикладной константы.", constant.Name, constant.Guid);
+      
       return constant.StringValue;
     }
 
     /// <summary>
     /// Получить значение прикладной константы (вещественное число).
     /// </summary>
-    /// <param name="guid">Guid константы.</param>
+    /// <param name="constant">Константа.</param>
     /// <returns>Значение константы.</returns>
     [ExpressionElement("ExpressionElement_GetDoubleValue_Name", "ExpressionElement_GetDoubleValue_Description")]
     public static double? GetDoubleValue(IConstantsSetting constant)
@@ -431,13 +529,16 @@ namespace DirRX.AppliedConstants.Server
       if (!AppliedConstants.PublicFunctions.Module.Remote.CheckConstantType(constant, AppliedConstants.ConstantsSetting.Type.DoubleType))
         return null;
       
+      if (constant.DoubleValue == null)
+        Logger.DebugFormat("AppliedConstants. GetDoubleValue. Name: \"{0}\". Guid: \"{1}\". Не заполнено значение прикладной константы.", constant.Name, constant.Guid);
+      
       return constant.DoubleValue;
     }
 
     /// <summary>
     /// Получить значение прикладной константы (целое число).
     /// </summary>
-    /// <param name="guid">Guid константы.</param>
+    /// <param name="constant">Константа.</param>
     /// <returns>Значение константы.</returns>
     [ExpressionElement("ExpressionElement_GetIntegerValue_Name", "ExpressionElement_GetIntegerValue_Description")]
     public static int? GetIntegerValue(IConstantsSetting constant)
@@ -448,13 +549,16 @@ namespace DirRX.AppliedConstants.Server
       if (!AppliedConstants.PublicFunctions.Module.Remote.CheckConstantType(constant, AppliedConstants.ConstantsSetting.Type.IntegerType))
         return null;
       
+      if (constant.IntegerValue == null)
+        Logger.DebugFormat("AppliedConstants. GetIntegerValue. Name: \"{0}\". Guid: \"{1}\". Не заполнено значение прикладной константы.", constant.Name, constant.Guid);
+      
       return constant.IntegerValue;
     }
 
     /// <summary>
     /// Получить значение прикладной константы (идентификатор).
     /// </summary>
-    /// <param name="guid">Guid константы.</param>
+    /// <param name="constant">Константа.</param>
     /// <returns>Значение константы.</returns>
     [ExpressionElement("ExpressionElement_GetIdentifierValue_Name", "ExpressionElement_GetIdentifierValue_Description")]
     public static long? GetIdentifierValue(IConstantsSetting constant)
@@ -465,13 +569,16 @@ namespace DirRX.AppliedConstants.Server
       if (!AppliedConstants.PublicFunctions.Module.Remote.CheckConstantType(constant, AppliedConstants.ConstantsSetting.Type.IdentifierType))
         return null;
       
+      if (constant.IdentifierValue == null)
+        Logger.DebugFormat("AppliedConstants. GetIdentifierValue. Name: \"{0}\". Guid: \"{1}\". Не заполнено значение прикладной константы.", constant.Name, constant.Guid);
+      
       return constant.IdentifierValue;
     }
 
     /// <summary>
     /// Получить значение прикладной константы (дата).
     /// </summary>
-    /// <param name="guid">Guid константы.</param>
+    /// <param name="constant">Константа.</param>
     /// <returns>Значение константы.</returns>
     [ExpressionElement("ExpressionElement_GetDateValue_Name", "ExpressionElement_GetDateValue_Description")]
     public static DateTime? GetDateValue(IConstantsSetting constant)
@@ -482,6 +589,12 @@ namespace DirRX.AppliedConstants.Server
       if (!AppliedConstants.PublicFunctions.Module.Remote.CheckConstantType(constant, AppliedConstants.ConstantsSetting.Type.DateType))
         return null;
       
+      if (constant.DateValue == null)
+      {
+        Logger.DebugFormat("AppliedConstants. GetDateValue. Name: \"{0}\". Guid: \"{1}\". Не заполнено значение прикладной константы.", constant.Name, constant.Guid);
+        return null;
+      }
+      
       return constant.DateValue.Value;
     }
 
@@ -489,7 +602,7 @@ namespace DirRX.AppliedConstants.Server
     /// <summary>
     /// Получить значение прикладной константы (логическое).
     /// </summary>
-    /// <param name="guid">Guid константы.</param>
+    /// <param name="constant">Константа.</param>
     /// <returns>Значение константы.</returns>
     [ExpressionElement("ExpressionElement_GetBoolValue_Name", "ExpressionElement_GetBoolValue_Description")]
     public static bool? GetBoolValue(IConstantsSetting constant)
@@ -500,7 +613,46 @@ namespace DirRX.AppliedConstants.Server
       if (!AppliedConstants.PublicFunctions.Module.Remote.CheckConstantType(constant, AppliedConstants.ConstantsSetting.Type.BoolType))
         return null;
       
+      if (constant.BoolValue == null)
+        Logger.DebugFormat("AppliedConstants. GetBoolValue. Name: \"{0}\". Guid: \"{1}\". Не заполнено значение прикладной константы.", constant.Name, constant.Guid);
+      
       return constant.BoolValue;
+    }
+    
+    /// <summary>
+    /// Получить значение прикладной константы (список строк).
+    /// </summary>
+    /// <param name="constant">Константа.</param>
+    /// <returns>Значение константы.</returns>
+    [ExpressionElement("ExpressionElement_GetStringListValue_Name", "ExpressionElement_GetStringListValue_Description")]
+    public static List<string> GetStringListValue(IConstantsSetting constant)
+    {
+      if (constant == null)
+        return null;
+      
+      if (!AppliedConstants.PublicFunctions.Module.Remote.CheckConstantType(constant, AppliedConstants.ConstantsSetting.Type.StringType))
+        return null;
+      
+      // Преобразовать строковое значение константы в список строк.
+      return ParseStringList(constant.StringValue);
+    }
+    
+    /// <summary>
+    /// Получить значение прикладной константы (список целых чисел).
+    /// </summary>
+    /// <param name="constant">Константа.</param>
+    /// <returns>Значение константы.</returns>
+    [ExpressionElement("ExpressionElement_GetIntListValue_Name", "ExpressionElement_GetIntListValue_Description")]
+    public static List<int> GetIntegerListValue(IConstantsSetting constant)
+    {
+      if (constant == null)
+        return null;
+      
+      if (!AppliedConstants.PublicFunctions.Module.Remote.CheckConstantType(constant, AppliedConstants.ConstantsSetting.Type.StringType))
+        return null;
+      
+      // Преобразовать строковое значение константы в список целых чисел.
+      return ParseIntegerList(constant.StringValue);
     }
     
     #endregion

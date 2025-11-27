@@ -106,8 +106,8 @@
   <data name="Property_BoolValue" xml:space="preserve">
     <value>Значение</value>
   </data>
-  <data name="Property_Note" xml:space="preserve">
-    <value>Примечание</value>
+  <data name="Property_Description" xml:space="preserve">
+    <value>Описание</value>
   </data>
   <data name="Enum_Type_IntegerType" xml:space="preserve">
     <value>Целое число</value>
@@ -132,5 +132,17 @@
   </data>
   <data name="Property_Value" xml:space="preserve">
     <value>Значение</value>
+  </data>
+  <data name="Action_ShowDuplicatesHint" xml:space="preserve">
+    <value>Показать список найденных дубликатов</value>
+  </data>
+  <data name="Action_ShowDuplicatesDescription" xml:space="preserve">
+    <value>Отображает список найденных дубликатов.</value>
+  </data>
+  <data name="Action_ShowDuplicates" xml:space="preserve">
+    <value>Показать дубли</value>
+  </data>
+  <data name="Property_PasswordTemp" xml:space="preserve">
+    <value>Временный пароль</value>
   </data>
 </root>

@@ -94,4 +94,22 @@
   <data name="ExpressionElement_GetBoolValue_Description" xml:space="preserve">
     <value>Возвращает значение, указанное в константе типа логическое.</value>
   </data>
+  <data name="ExpressionElement_GetStringListValue_Name" xml:space="preserve">
+    <value>Получить список строк</value>
+  </data>
+  <data name="ExpressionElement_GetIntListValue_Name" xml:space="preserve">
+    <value>Получить список целых чисел</value>
+  </data>
+  <data name="ExpressionElement_GetStringListValue_Description" xml:space="preserve">
+    <value>Возвращает список строк, указанный через разделитель в константе типа строка.</value>
+  </data>
+  <data name="ExpressionElement_GetIntListValue_Description" xml:space="preserve">
+    <value>Возвращает список целых чисел, указанный через разделитель в константе типа строка.</value>
+  </data>
+  <data name="DuplicatesDetected" xml:space="preserve">
+    <value>Обнаружены дублирующие записи.</value>
+  </data>
+  <data name="GuidNotValid" xml:space="preserve">
+    <value>Поле 'Guid' содержит некорректный идентификатор. Укажите валидный GUID.</value>
+  </data>
 </root>

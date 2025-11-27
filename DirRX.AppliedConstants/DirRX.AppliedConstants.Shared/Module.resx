@@ -94,4 +94,22 @@
   <data name="ExpressionElement_GetBoolValue_Description" xml:space="preserve">
     <value>Returns the value specified in a bool constant.</value>
   </data>
+  <data name="ExpressionElement_GetStringListValue_Name" xml:space="preserve">
+    <value>Get string list</value>
+  </data>
+  <data name="ExpressionElement_GetIntListValue_Name" xml:space="preserve">
+    <value>Get int list</value>
+  </data>
+  <data name="ExpressionElement_GetStringListValue_Description" xml:space="preserve">
+    <value>Returns a list of strings specified by a separator in a string constant.</value>
+  </data>
+  <data name="ExpressionElement_GetIntListValue_Description" xml:space="preserve">
+    <value>Returns a list of integers specified by a separator in a string constant.</value>
+  </data>
+  <data name="DuplicatesDetected" xml:space="preserve">
+    <value>Duplicate records found.</value>
+  </data>
+  <data name="GuidNotValid" xml:space="preserve">
+    <value>The 'Guid' field contains an invalid identifier. Please provide a valid GUID.</value>
+  </data>
 </root>

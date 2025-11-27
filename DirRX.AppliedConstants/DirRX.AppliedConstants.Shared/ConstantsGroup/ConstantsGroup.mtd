@@ -12,6 +12,14 @@
       "Overridden": [
         "GenerateHandler"
       ]
+    },
+    {
+      "NameGuid": "3d3f891b-d1a3-4c26-9e59-3a06f0961726",
+      "Name": "ShowDuplicates",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": null,
+      "SmallIconName": null
     }
   ],
   "BaseGuid": "04581d26-0780-4cfd-b3cd-c2cafc5798b0",
@@ -101,6 +109,24 @@
           "RowNumber": 1,
           "RowSpan": 1,
           "Settings": []
+        },
+        {
+          "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
+          "NameGuid": "fbb26eca-d059-47df-b91c-6399baefb943",
+          "Name": "Description",
+          "ColumnNumber": 0,
+          "ColumnSpan": 2,
+          "DataBinderTypeName": "Sungero.Presentation.CommonDataBinders.TextEditorToTextBinder",
+          "ParentGuid": "560e5989-f929-4cc5-9015-566566ecd0b0",
+          "PropertyGuid": "03dcd5c9-1f9f-43e3-934e-c548ad11b5be",
+          "RowNumber": 3,
+          "RowSpan": 1,
+          "Settings": [
+            {
+              "Name": "Height",
+              "Value": 100
+            }
+          ]
         }
       ]
     }
@@ -128,6 +154,7 @@
       "Code": "Name",
       "IsDisplayValue": true,
       "IsQuickSearchAllowed": true,
+      "IsRequired": true,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "1dcedc29-5140-4770-ac92-eabc212326a1"
     },
@@ -148,6 +175,32 @@
       "IsEnabled": false,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.BooleanEditorToBooleanBinder",
       "PreviousPropertyGuid": "52b75946-54dd-4ce1-bb0e-1531e066ea6b"
+    },
+    {
+      "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
+      "NameGuid": "03dcd5c9-1f9f-43e3-934e-c548ad11b5be",
+      "Name": "Description",
+      "CanBeSearch": false,
+      "Code": "Description",
+      "Length": 255,
+      "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
+      "PreviousPropertyGuid": "7463a40b-4ab2-425c-8564-01d11e3b1711"
+    }
+  ],
+  "PublicFunctions": [
+    {
+      "Name": "GetDuplicates",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "constantsGroup",
+          "ParameterType": "global::DirRX.AppliedConstants.IConstantsGroup",
+          "ParameterTypeFullName": "DirRX.AppliedConstants.IConstantsGroup, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Linq.IQueryable<global::DirRX.AppliedConstants.IConstantsGroup>",
+      "ReturnTypeFullName": "System.Linq.IQueryable"
     }
   ],
   "PublicStructures": [],
