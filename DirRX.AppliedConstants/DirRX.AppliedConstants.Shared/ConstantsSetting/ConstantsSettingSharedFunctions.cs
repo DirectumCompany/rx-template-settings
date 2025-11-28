@@ -9,6 +9,7 @@ namespace DirRX.AppliedConstants.Shared
 {
   partial class ConstantsSettingFunctions
   {
+    
     /// <summary>
     /// Определить состояния полей в карточке.
     /// </summary>
@@ -27,8 +28,21 @@ namespace DirRX.AppliedConstants.Shared
       var isSystem = _obj.IsSystem == true;
       _obj.State.Properties.Type.IsEnabled = !isSystem;
       _obj.State.Properties.Name.IsEnabled = !isSystem;
+      _obj.State.Properties.Description.IsEnabled = !isSystem;
       _obj.State.Properties.Guid.IsEnabled = !isSystem;
       _obj.State.Properties.ConstantsGroup.IsEnabled = !isSystem;
+    }
+    
+    /// <summary>
+    /// Сбросить значение пароля.
+    /// </summary>
+    public void ClearPasswordValue()
+    {
+      // При сбросе значения пароля выполняется очистка связанных полей.
+      _obj.Value = string.Empty;
+      _obj.PasswordValue = string.Empty;
+      _obj.PasswordTemp = string.Empty;
+      _obj.PublicValue = string.Empty;
     }
   }
 }

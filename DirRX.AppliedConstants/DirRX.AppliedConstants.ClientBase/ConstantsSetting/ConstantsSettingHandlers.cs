@@ -18,8 +18,6 @@ namespace DirRX.AppliedConstants
     public override void Showing(Sungero.Presentation.FormShowingEventArgs e)
     {
       Functions.ConstantsSetting.SetPropertiesState(_obj);
-      
-      _obj.PasswordTemp = _obj.Value;
     }
   }
 }

@@ -5,6 +5,7 @@ namespace DirRX.AppliedConstants.Constants
 {
   public static class ConstantsSetting
   {
+    
     /// <summary>
     ///  Видимое значение для скрытого пароля.
     /// </summary>

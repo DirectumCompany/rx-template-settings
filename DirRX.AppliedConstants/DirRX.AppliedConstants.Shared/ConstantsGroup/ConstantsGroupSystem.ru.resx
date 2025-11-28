@@ -76,4 +76,16 @@
   <data name="Property_IsSystem" xml:space="preserve">
     <value>Системная</value>
   </data>
+  <data name="Action_ShowDuplicatesHint" xml:space="preserve">
+    <value>Показать список найденных дубликатов</value>
+  </data>
+  <data name="Action_ShowDuplicatesDescription" xml:space="preserve">
+    <value>Отображает список найденных дубликатов.</value>
+  </data>
+  <data name="Action_ShowDuplicates" xml:space="preserve">
+    <value>Показать дубли</value>
+  </data>
+  <data name="Property_Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
 </root>

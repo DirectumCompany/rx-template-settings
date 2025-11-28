@@ -84,6 +84,11 @@
           "ParameterTypeFullName": "System.String"
         },
         {
+          "Name": "description",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
           "Name": "value",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
@@ -109,6 +114,11 @@
       "Parameters": [
         {
           "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "description",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
         },
@@ -142,6 +152,11 @@
           "ParameterTypeFullName": "System.String"
         },
         {
+          "Name": "description",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
           "Name": "value",
           "ParameterType": "global::System.Int64",
           "ParameterTypeFullName": "System.Int64"
@@ -167,6 +182,11 @@
       "Parameters": [
         {
           "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "description",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
         },
@@ -200,6 +220,11 @@
           "ParameterTypeFullName": "System.String"
         },
         {
+          "Name": "description",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
           "Name": "value",
           "ParameterType": "global::System.DateTime",
           "ParameterTypeFullName": "System.DateTime"
@@ -225,6 +250,11 @@
       "Parameters": [
         {
           "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "description",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
         },
@@ -258,6 +288,11 @@
           "ParameterTypeFullName": "System.String"
         },
         {
+          "Name": "description",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
           "Name": "guid",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
@@ -273,6 +308,11 @@
       "Parameters": [
         {
           "Name": "name",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        },
+        {
+          "Name": "description",
           "ParameterType": "global::System.String",
           "ParameterTypeFullName": "System.String"
         },
@@ -353,6 +393,20 @@
       "ReturnTypeFullName": "System.Nullable"
     },
     {
+      "Name": "GetIntegerListValue",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::System.Int32>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
       "Name": "GetIntegerValue",
       "IsRemote": true,
       "Parameters": [
@@ -381,6 +435,20 @@
       "ReturnTypeFullName": "System.String"
     },
     {
+      "Name": "GetStringListValue",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "guid",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::System.String>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
       "Name": "GetStringValue",
       "IsRemote": true,
       "Parameters": [
@@ -407,6 +475,34 @@
       "Placement": "Shared",
       "ReturnType": "global::DirRX.AppliedConstants.IConstantsSetting",
       "ReturnTypeFullName": "DirRX.AppliedConstants.IConstantsSetting, Sungero.Domain.Interfaces"
+    },
+    {
+      "Name": "ParseIntegerList",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "value",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::System.Int32>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
+    },
+    {
+      "Name": "ParseStringList",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "value",
+          "ParameterType": "global::System.String",
+          "ParameterTypeFullName": "System.String"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Collections.Generic.List<global::System.String>",
+      "ReturnTypeFullName": "System.Collections.Generic.List"
     }
   ],
   "PublicStructures": [],
@@ -424,7 +520,13 @@
     "ExpressionElement_GetIntegerValue_Description",
     "ExpressionElement_GetIdentifierValue_Description",
     "ExpressionElement_GetDateValue_Description",
-    "ExpressionElement_GetBoolValue_Description"
+    "ExpressionElement_GetBoolValue_Description",
+    "ExpressionElement_GetStringListValue_Name",
+    "ExpressionElement_GetIntListValue_Name",
+    "ExpressionElement_GetStringListValue_Description",
+    "ExpressionElement_GetIntListValue_Description",
+    "DuplicatesDetected",
+    "GuidNotValid"
   ],
   "ServerAssemblyName": "DirRX.AppliedConstants.Server",
   "ServerNamespace": "DirRX.AppliedConstants.Server",

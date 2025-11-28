@@ -9,6 +9,16 @@ namespace DirRX.AppliedConstants.Client
 {
   partial class ConstantsGroupActions
   {
+    public virtual void ShowDuplicates(Sungero.Domain.Client.ExecuteActionArgs e)
+    {
+      Functions.ConstantsGroup.Remote.GetDuplicates(_obj).Show();
+    }
+
+    public virtual bool CanShowDuplicates(Sungero.Domain.Client.CanExecuteActionArgs e)
+    {
+      return true;
+    }
+
     public override void DeleteEntity(Sungero.Domain.Client.ExecuteActionArgs e)
     {
       base.DeleteEntity(e);

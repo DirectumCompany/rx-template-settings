@@ -12,6 +12,14 @@
       "Overridden": [
         "GenerateHandler"
       ]
+    },
+    {
+      "NameGuid": "31bdec37-e30d-41c3-b43b-ca5512224684",
+      "Name": "ShowDuplicates",
+      "ActionArea": "Card",
+      "GenerateHandler": true,
+      "LargeIconName": null,
+      "SmallIconName": null
     }
   ],
   "BaseGuid": "04581d26-0780-4cfd-b3cd-c2cafc5798b0",
@@ -198,7 +206,12 @@
           "PropertyGuid": "7742cee7-7fd0-467d-bb33-7748f6aef3b5",
           "RowNumber": 4,
           "RowSpan": 1,
-          "Settings": []
+          "Settings": [
+            {
+              "Name": "Height",
+              "Value": 100
+            }
+          ]
         },
         {
           "$type": "Sungero.Metadata.ControlMetadata, Sungero.Metadata",
@@ -401,8 +414,9 @@
     {
       "$type": "Sungero.Metadata.StringPropertyMetadata, Sungero.Metadata",
       "NameGuid": "7742cee7-7fd0-467d-bb33-7748f6aef3b5",
-      "Name": "Note",
-      "Code": "Note",
+      "Name": "Description",
+      "CanBeSearch": false,
+      "Code": "Description",
       "Length": 255,
       "ListDataBinderTypeName": "Sungero.Presentation.CommonDataBinders.StringEditorToStringBinder",
       "PreviousPropertyGuid": "01813e86-e620-4739-a9fb-138f15888a9b"
@@ -435,10 +449,28 @@
       "PreviousPropertyGuid": "7742cee7-7fd0-467d-bb33-7748f6aef3b5"
     }
   ],
+  "PublicFunctions": [
+    {
+      "Name": "GetDuplicates",
+      "IsRemote": true,
+      "Parameters": [
+        {
+          "Name": "constantsSetting",
+          "ParameterType": "global::DirRX.AppliedConstants.IConstantsSetting",
+          "ParameterTypeFullName": "DirRX.AppliedConstants.IConstantsSetting, Sungero.Domain.Interfaces"
+        }
+      ],
+      "Placement": "Shared",
+      "ReturnType": "global::System.Linq.IQueryable<global::DirRX.AppliedConstants.IConstantsSetting>",
+      "ReturnTypeFullName": "System.Linq.IQueryable"
+    }
+  ],
   "PublicStructures": [],
   "ResourcesKeys": [
     "GuidFieldIsEmptyError",
-    "ConstantsGroupIsEmptyError"
+    "ConstantsGroupIsEmptyError",
+    "TrueLocalizedValue",
+    "FalseLocalizedValue"
   ],
   "RibbonCardMetadata": {
     "NameGuid": "d2d609fe-3fd8-434d-a20f-866b1aef006f",

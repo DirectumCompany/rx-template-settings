@@ -64,4 +64,10 @@
   <data name="ConstantsGroupIsEmptyError" xml:space="preserve">
     <value>The Constant group field for the system constant is empty</value>
   </data>
+  <data name="TrueLocalizedValue" xml:space="preserve">
+    <value>True</value>
+  </data>
+  <data name="FalseLocalizedValue" xml:space="preserve">
+    <value>False</value>
+  </data>
 </root>
