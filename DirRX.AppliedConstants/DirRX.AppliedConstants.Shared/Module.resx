@@ -112,4 +112,13 @@
   <data name="GuidNotValid" xml:space="preserve">
     <value>The 'Guid' field contains an invalid identifier. Please provide a valid GUID.</value>
   </data>
+  <data name="ExpressionElement_GetConstant_Name" xml:space="preserve">
+    <value>Get applied constant</value>
+  </data>
+  <data name="ExpressionElement_GetConstant_Description" xml:space="preserve">
+    <value>Returns an application constant that exactly matches the value in the Guid field.</value>
+  </data>
+  <data name="ExpressionElement_GetConstant_GuidParam" xml:space="preserve">
+    <value>String (value of the Guid constant field)</value>
+  </data>
 </root>

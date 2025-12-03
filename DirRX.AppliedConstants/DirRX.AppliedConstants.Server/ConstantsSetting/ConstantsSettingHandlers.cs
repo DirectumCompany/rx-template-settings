@@ -24,11 +24,6 @@ namespace DirRX.AppliedConstants
       if (_obj.IsSystem == true && string.IsNullOrEmpty(_obj.Guid))
         e.AddError(DirRX.AppliedConstants.ConstantsSettings.Resources.GuidFieldIsEmptyError);
       
-      // Проверка: значение поля GUID должно быть в корректном формате.
-      var constantGuid = Guid.Empty;
-      if (!string.IsNullOrEmpty(_obj.Guid) && !Guid.TryParse(_obj.Guid, out constantGuid))
-        e.AddError(DirRX.AppliedConstants.Resources.GuidNotValid);
-      
       // Проверка: для системных констант обязательно должна быть указана группа констант.
       if (_obj.IsSystem == true && _obj.ConstantsGroup == null)
         e.AddError(DirRX.AppliedConstants.ConstantsSettings.Resources.ConstantsGroupIsEmptyError);

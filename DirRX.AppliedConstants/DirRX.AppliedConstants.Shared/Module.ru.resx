@@ -112,4 +112,13 @@
   <data name="GuidNotValid" xml:space="preserve">
     <value>Поле 'Guid' содержит некорректный идентификатор. Укажите валидный GUID.</value>
   </data>
+  <data name="ExpressionElement_GetConstant_Name" xml:space="preserve">
+    <value>Получить прикладную константу</value>
+  </data>
+  <data name="ExpressionElement_GetConstant_Description" xml:space="preserve">
+    <value>Возвращает прикладную константу по точному совпадению значения в поле Guid.</value>
+  </data>
+  <data name="ExpressionElement_GetConstant_GuidParam" xml:space="preserve">
+    <value>Строка (значение поля Guid константы)</value>
+  </data>
 </root>

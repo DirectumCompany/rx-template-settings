@@ -31,6 +31,16 @@
       "IsSolutionModule": true,
       "MaxVersion": "",
       "MinVersion": ""
+    },
+    {
+      "Id": "92491aa6-c4df-4f46-a807-ebdd337bda74",
+      "MaxVersion": "",
+      "MinVersion": "1.1.0.0"
+    },
+    {
+      "Id": "ec7b606a-21ee-4f16-aba8-ab8c2af76d12",
+      "MaxVersion": "",
+      "MinVersion": "0.0.1.0"
     }
   ],
   "ExplorerTreeOrder": [
@@ -526,7 +536,10 @@
     "ExpressionElement_GetStringListValue_Description",
     "ExpressionElement_GetIntListValue_Description",
     "DuplicatesDetected",
-    "GuidNotValid"
+    "GuidNotValid",
+    "ExpressionElement_GetConstant_Name",
+    "ExpressionElement_GetConstant_Description",
+    "ExpressionElement_GetConstant_GuidParam"
   ],
   "ServerAssemblyName": "DirRX.AppliedConstants.Server",
   "ServerNamespace": "DirRX.AppliedConstants.Server",
