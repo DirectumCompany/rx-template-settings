@@ -496,6 +496,50 @@ namespace DirRX.AppliedConstants.Server
     #region Функции вычисляемых выражений.
     
     /// <summary>
+    /// Получить константу по Guid.
+    /// </summary>
+    /// <param name="guid">Guid константы.</param>
+    /// <returns>Константа.</returns>
+    [ExpressionElement("ExpressionElement_GetConstant_Name", "ExpressionElement_GetConstant_Description", "ExpressionElement_GetConstant_GuidParam")]
+    public static IConstantsSetting GetСonstant(Sungero.Workflow.ITask task, string guid)
+    {
+      return AppliedConstants.PublicFunctions.Module.Remote.GetСonstant(guid);
+    }
+    
+    /// <summary>
+    /// Получить константу по Guid.
+    /// </summary>
+    /// <param name="guid">Guid константы.</param>
+    /// <returns>Константа.</returns>
+    [ExpressionElement("ExpressionElement_GetConstant_Name", "ExpressionElement_GetConstant_Description", "ExpressionElement_GetConstant_GuidParam")]
+    public static IConstantsSetting GetСonstant(Sungero.Workflow.IAssignment assignment, string guid)
+    {
+      return AppliedConstants.PublicFunctions.Module.Remote.GetСonstant(guid);
+    }
+    
+    /// <summary>
+    /// Получить константу по Guid.
+    /// </summary>
+    /// <param name="guid">Guid константы.</param>
+    /// <returns>Константа.</returns>
+    [ExpressionElement("ExpressionElement_GetConstant_Name", "ExpressionElement_GetConstant_Description", "ExpressionElement_GetConstant_GuidParam")]
+    public static IConstantsSetting GetСonstant(Sungero.Content.IElectronicDocument document, string guid)
+    {
+      return AppliedConstants.PublicFunctions.Module.Remote.GetСonstant(guid);
+    }
+    
+    /// <summary>
+    /// Получить константу по Guid.
+    /// </summary>
+    /// <param name="guid">Guid константы.</param>
+    /// <returns>Константа.</returns>
+    [ExpressionElement("ExpressionElement_GetConstant_Name", "ExpressionElement_GetConstant_Description", "ExpressionElement_GetConstant_GuidParam")]
+    public static IConstantsSetting GetСonstant(Sungero.CoreEntities.IDatabookEntry databook, string guid)
+    {
+      return AppliedConstants.PublicFunctions.Module.Remote.GetСonstant(guid);
+    }
+    
+    /// <summary>
     /// Получить значение прикладной константы (строка).
     /// </summary>
     /// <param name="constant">Константа.</param>
