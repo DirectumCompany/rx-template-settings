@@ -140,6 +140,7 @@
   "IconResourcesKeys": [],
   "IntegrationServiceName": "AppliedConstantsConstantsGroup",
   "IsStatusEnabled": true,
+  "ListViewUuid": "87a33f71-1ccf-49bb-98cf-b85a376ed265",
   "OperationsClass": "",
   "Overridden": [
     "IsAutoCreated",
