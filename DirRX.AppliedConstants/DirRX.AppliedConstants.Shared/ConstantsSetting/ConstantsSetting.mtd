@@ -250,6 +250,7 @@
     "RefreshClient"
   ],
   "IconResourcesKeys": [],
+  "ListViewUuid": "c48299e8-651f-4297-b295-92b4544fc51d",
   "OperationsClass": "",
   "Overridden": [
     "CanBeSearch"
