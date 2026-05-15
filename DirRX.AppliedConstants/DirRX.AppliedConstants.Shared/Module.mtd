@@ -546,12 +546,12 @@
   "SharedAssemblyName": "DirRX.AppliedConstants.Shared",
   "SharedNamespace": "DirRX.AppliedConstants.Shared",
   "SpecialFolders": [],
-  "Version": "0.0.1.1",
+  "Version": "0.0.1.2",
   "Widgets": [],
   "Versions": [
     {
       "Type": "ModuleMetadata",
-      "Number": 11
+      "Number": 12
     },
     {
       "Type": "DomainApi",
